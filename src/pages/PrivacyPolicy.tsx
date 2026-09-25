@@ -1,11 +1,12 @@
 import React from 'react';
-import { Shield, Lock, Eye, Trash2, CheckCircle2, FileText } from 'lucide-react';
+import { Shield, Lock, Eye, Trash2, CheckCircle2, Database, MessageSquare, UserCheck, Clock, Mail } from 'lucide-react';
 
 interface PrivacyPolicyProps {
   onBackToApp?: () => void;
+  onNavigateTab?: (tab: 'privacy' | 'data-deletion' | 'terms') => void;
 }
 
-export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp }) => {
+export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp, onNavigateTab }) => {
   return (
     <div className="max-w-4xl mx-auto py-6 px-4 sm:px-6">
       
@@ -24,7 +25,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp }) => 
             Effective Date: September 25, 2026 | Last Updated: September 25, 2026
           </p>
           <p className="text-slate-400 text-xs mt-2">
-            This Privacy Policy outlines how InstaDM Automation collects, uses, stores, and protects your information in compliance with Meta Developer Policies and Instagram Graph API Standards.
+            This Privacy Policy outlines how InstaDM Automation (AutoDM) collects, uses, stores, and protects your information in compliance with Meta Developer Policies and Instagram Graph API Standards.
           </p>
           {onBackToApp && (
             <button
@@ -37,12 +38,12 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp }) => 
         </div>
       </div>
 
-      {/* Main Content Cards */}
+      {/* Main Content Sections */}
       <div className="space-y-6 text-slate-700 text-sm leading-relaxed">
         
-        {/* Quick Highlights */}
+        {/* Quick Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 text-slate-900 font-semibold mb-2">
               <div className="p-2 bg-rose-50 text-rose-600 rounded-lg">
                 <Lock className="w-5 h-5" />
@@ -50,23 +51,23 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp }) => 
               <span>No Password Storage</span>
             </div>
             <p className="text-xs text-slate-500">
-              We connect via official Meta OAuth 2.0. We never see or store your Instagram password.
+              We connect securely via Meta OAuth 2.0. We never see or store your Instagram password.
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 text-slate-900 font-semibold mb-2">
               <div className="p-2 bg-indigo-50 text-indigo-600 rounded-lg">
                 <Eye className="w-5 h-5" />
               </div>
-              <span>Limited Data Usage</span>
+              <span>Targeted API Access</span>
             </div>
             <p className="text-xs text-slate-500">
-              We process comments and posts solely to send requested links & location DMs to your audience.
+              We access comment webhooks strictly to trigger requested links and location DMs.
             </p>
           </div>
 
-          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col justify-between">
+          <div className="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <div className="flex items-center gap-3 text-slate-900 font-semibold mb-2">
               <div className="p-2 bg-emerald-50 text-emerald-600 rounded-lg">
                 <Trash2 className="w-5 h-5" />
@@ -74,150 +75,165 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBackToApp }) => 
               <span>Instant Data Deletion</span>
             </div>
             <p className="text-xs text-slate-500">
-              Disconnect access anytime in Instagram settings or request complete data erasure.
+              Revoke permissions in Instagram settings or request database erasure anytime.
             </p>
           </div>
         </div>
 
-        {/* Section 1: Overview & Scope */}
+        {/* 1. Instagram API Usage */}
         <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <FileText className="w-5 h-5 text-indigo-600" />
-            1. Overview & Scope
+            <Shield className="w-5 h-5 text-indigo-600" />
+            1. Instagram API Usage
           </h2>
           <p>
-            <strong>InstaDM Automation</strong> ("we", "our", or "the Service") provides social media automation tools for Instagram Business and Creator accounts. This Privacy Policy applies to all users who connect their Instagram accounts to our platform.
+            InstaDM Automation utilizes official <strong>Instagram Graph API (v22.0)</strong> endpoints to provide comment-to-DM marketing automation for Business and Creator accounts.
           </p>
           <p>
-            By authorizing our application through Meta OAuth, you agree to the collection and use of information in accordance with this policy and Meta’s Platform Terms.
+            Our API integration uses approved permissions including <code>instagram_basic</code>, <code>instagram_manage_comments</code>, and <code>instagram_manage_messages</code>. We adhere strictly to Meta Developer Platform Terms and API Rate Limits.
           </p>
         </div>
 
-        {/* Section 2: Information We Collect */}
-        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-4">
+        {/* 2. Comments and Messages */}
+        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Shield className="w-5 h-5 text-indigo-600" />
-            2. Information We Collect via Meta API
+            <MessageSquare className="w-5 h-5 text-rose-600" />
+            2. Comments and Messages Data Processing
           </h2>
           <p>
-            When you connect your Instagram account, we access specific data granted through Meta permissions:
+            To trigger automated workflows, our app processes incoming webhook notifications when users comment on your Instagram posts:
           </p>
+          <ul className="list-disc pl-6 space-y-1.5 text-slate-600">
+            <li><strong>Comments:</strong> We analyze incoming comment text for configured trigger keywords (e.g. "LOCATION", "LINK"). We do not analyze unassociated posts or comments.</li>
+            <li><strong>Direct Messages:</strong> In response to valid keyword matches, our app sends automated Direct Messages containing requested links or location details.</li>
+            <li><strong>Public Replies:</strong> Optional public comment confirmation replies (e.g., "Check your DMs! 📩") are posted to inform users.</li>
+          </ul>
+        </div>
 
-          <div className="space-y-3 pl-2">
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0" />
-              <div>
-                <strong>Instagram Account Information:</strong> Your Instagram User ID, username, profile picture URL, account type (Business/Creator), and follower count.
-              </div>
+        {/* 3. Account Information */}
+        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <UserCheck className="w-5 h-5 text-emerald-600" />
+            3. Account Information We Collect
+          </h2>
+          <p>When you authorize your account, we access basic public account details needed to render your dashboard:</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
+            <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="text-xs font-medium">Instagram User ID & Username</span>
             </div>
-
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0" />
-              <div>
-                <strong>Post & Media Data:</strong> Media IDs, captions, permalinks, media types (Reel/Image), and publication timestamps for posts you select for automation.
-              </div>
+            <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="text-xs font-medium">Profile Picture URL & Account Type</span>
             </div>
-
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0" />
-              <div>
-                <strong>Comment Data & Webhook Payloads:</strong> Incoming comment text, comment IDs, commenter usernames, and commenter scoped IDs processed to match automation triggers (e.g. keywords like "LOCATION").
-              </div>
+            <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="text-xs font-medium">Follower Count & Connected Page ID</span>
             </div>
-
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600 mt-1 flex-shrink-0" />
-              <div>
-                <strong>Access Tokens:</strong> Encrypted long-lived access tokens required to perform API requests (messaging and public comment replies) on your behalf.
-              </div>
+            <div className="flex items-center gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span className="text-xs font-medium">Encrypted Access Tokens</span>
             </div>
           </div>
         </div>
 
-        {/* Section 3: How We Use Your Information */}
+        {/* 4. Data Storage & Supabase */}
         <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Eye className="w-5 h-5 text-indigo-600" />
-            3. How We Use Information
-          </h2>
-          <p>We strictly use collected information to provide and improve the Service:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Automated DM Delivery:</strong> Sending requested link/location details in response to comment triggers on your specified posts.</li>
-            <li><strong>Public Comment Replies:</strong> Posting optional public confirmation replies (e.g., "Check your DMs!") on your posts.</li>
-            <li><strong>Analytics & Logs:</strong> Displaying execution history, trigger counts, and message delivery statuses inside your dashboard.</li>
-            <li><strong>Service Maintenance:</strong> Debugging webhook delivery issues and ensuring API rate limit compliance.</li>
-          </ul>
-        </div>
-
-        {/* Section 4: Data Sharing & Third Parties */}
-        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
-          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
-            <Lock className="w-5 h-5 text-indigo-600" />
-            4. Data Sharing & Third-Party Disclosure
+            <Database className="w-5 h-5 text-sky-600" />
+            4. Data Storage & Supabase Infrastructure
           </h2>
           <p>
-            <strong>We do NOT sell, rent, trade, or monetize your personal or account data under any circumstances.</strong>
+            Your account configurations, active automation rules, and trigger logs are stored securely using <strong>Supabase (PostgreSQL)</strong> database infrastructure with Row Level Security (RLS).
           </p>
-          <p>Data is shared strictly with essential service providers operating under strict confidentiality:</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li><strong>Meta Platform / Instagram Graph API:</strong> For processing webhooks and executing API calls.</li>
-            <li><strong>Database & Infrastructure Providers (Supabase):</strong> For encrypted storage of configuration and event logs.</li>
+          <p>
+            All data in transit is encrypted using <strong>TLS 1.3 / SSL</strong>, and access tokens stored in Supabase are protected with AES-256 encryption. We do not sell or monetize your data.
+          </p>
+        </div>
+
+        {/* 5. Data Retention */}
+        <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Clock className="w-5 h-5 text-amber-600" />
+            5. Data Retention Policy
+          </h2>
+          <p>
+            We retain data only as long as necessary to maintain active service:
+          </p>
+          <ul className="list-disc pl-6 space-y-1 text-slate-600">
+            <li><strong>Webhook Activity Logs:</strong> Stored for up to 30 days for analytics and debugging, after which they are automatically purged.</li>
+            <li><strong>Access Tokens:</strong> Retained while your account remains connected. Tokens are deleted immediately upon disconnection.</li>
+            <li><strong>Media Content:</strong> We do not cache or store full Instagram video/image media files long-term.</li>
           </ul>
         </div>
 
-        {/* Section 5: Data Retention & Deletion Instructions */}
+        {/* 6. User Deletion Requests */}
         <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-4">
           <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
             <Trash2 className="w-5 h-5 text-rose-600" />
-            5. User Rights & Data Deletion Instructions
+            6. User Deletion Requests
           </h2>
           <p>
-            You retain full ownership and control of your data at all times.
+            You have the absolute right to request deletion of all your stored data. You can disconnect access via Instagram settings or submit a request on our dedicated Data Deletion page.
           </p>
 
-          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 space-y-3">
-            <h3 className="font-semibold text-slate-900">How to Revoke Access & Delete Your Data:</h3>
-            
-            <div className="space-y-2 text-xs md:text-sm">
-              <p><strong>Option A: Revoke via Instagram Settings</strong></p>
-              <ol className="list-decimal pl-5 space-y-1 text-slate-600">
-                <li>Log in to your Instagram account on mobile or desktop.</li>
-                <li>Go to <strong>Settings & Privacy &gt; Website Permissions &gt; Apps and Websites</strong>.</li>
-                <li>Find <strong>InstaDM Automation</strong> and click <strong>Remove</strong>.</li>
-              </ol>
+          <div className="bg-slate-50 p-4 rounded-lg border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div>
+              <p className="font-semibold text-slate-900">Need to request complete data erasure?</p>
+              <p className="text-xs text-slate-600">Visit our Data Deletion page for step-by-step instructions and request form.</p>
             </div>
-
-            <div className="space-y-2 text-xs md:text-sm pt-2">
-              <p><strong>Option B: Request Manual Account Erasure</strong></p>
-              <p className="text-slate-600">
-                To request immediate permanent deletion of all stored logs, tokens, and account records from our database, contact us at <a href="mailto:privacy@instadm.app" className="text-rose-600 underline font-medium">privacy@instadm.app</a>. We will fulfill data erasure requests within 48 hours.
-              </p>
-            </div>
+            {onNavigateTab && (
+              <button
+                onClick={() => onNavigateTab('data-deletion')}
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-semibold text-xs rounded-lg shadow transition-colors whitespace-nowrap"
+              >
+                Go to Data Deletion Page →
+              </button>
+            )}
           </div>
         </div>
 
-        {/* Section 6: Security & Contact */}
+        {/* 7. Contact Information */}
         <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm space-y-3">
-          <h2 className="text-lg font-bold text-slate-900">6. Security & Contact Information</h2>
+          <h2 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <Mail className="w-5 h-5 text-indigo-600" />
+            7. Contact Information
+          </h2>
           <p>
-            We enforce industry-standard security measures including SSL/TLS encryption for all data in transit and AES-256 encryption at rest.
+            If you have questions regarding this Privacy Policy or data security, reach out to our team:
           </p>
-          <div className="pt-2 text-slate-600">
-            <p>If you have any questions regarding this Privacy Policy, please contact:</p>
-            <p className="font-medium text-slate-900 mt-1">InstaDM Developer Support</p>
-            <p className="text-rose-600">Email: support@instadm.app / privacy@instadm.app</p>
+          <div className="p-3 bg-slate-50 rounded-lg border border-slate-200 text-xs space-y-1">
+            <p><strong>InstaDM Developer Support</strong></p>
+            <p>Email: <a href="mailto:privacy@instadm.app" className="text-rose-600 underline">privacy@instadm.app</a> / <a href="mailto:support@instadm.app" className="text-rose-600 underline">support@instadm.app</a></p>
           </div>
         </div>
 
       </div>
 
-      {/* Footer */}
+      {/* Footer Links */}
       <div className="mt-8 pt-6 border-t border-slate-200 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
         <span>© 2026 InstaDM Automation. All rights reserved.</span>
-        <div className="flex items-center gap-4">
-          <span className="hover:text-slate-900 cursor-pointer">Terms of Service</span>
-          <span>•</span>
-          <span className="hover:text-slate-900 cursor-pointer">Data Deletion Policy</span>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => onNavigateTab?.('privacy')}
+            className="hover:text-slate-900 font-medium cursor-pointer"
+          >
+            Privacy Policy
+          </button>
+          <span>|</span>
+          <button 
+            onClick={() => onNavigateTab?.('data-deletion')}
+            className="hover:text-slate-900 font-medium cursor-pointer"
+          >
+            Data Deletion
+          </button>
+          <span>|</span>
+          <button 
+            onClick={() => onNavigateTab?.('terms')}
+            className="hover:text-slate-900 font-medium cursor-pointer"
+          >
+            Terms of Service
+          </button>
         </div>
       </div>
 

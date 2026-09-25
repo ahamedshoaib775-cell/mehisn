@@ -19,8 +19,10 @@ import { CreateAutomationModal } from './components/automations/CreateAutomation
 import { PostsGrid } from './components/posts/PostsGrid';
 import { ActivityLog } from './components/activity/ActivityLog';
 import { DeveloperSetupGuide } from './components/setup/DeveloperSetupGuide';
+import { Footer } from './components/layout/Footer';
 import { PrivacyPolicy } from './pages/PrivacyPolicy';
 import { DataDeletion } from './pages/DataDeletion';
+import { TermsOfService } from './pages/TermsOfService';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -218,17 +220,27 @@ export function App() {
               {activeTab === 'setup' && <DeveloperSetupGuide />}
 
               {activeTab === 'privacy' && (
-                <PrivacyPolicy onBackToApp={() => setActiveTab('dashboard')} />
+                <PrivacyPolicy 
+                  onBackToApp={() => setActiveTab('dashboard')} 
+                  onNavigateTab={(tab) => setActiveTab(tab)}
+                />
               )}
 
               {activeTab === 'data-deletion' && (
                 <DataDeletion onBackToApp={() => setActiveTab('dashboard')} />
+              )}
+
+              {activeTab === 'terms' && (
+                <TermsOfService onBackToApp={() => setActiveTab('dashboard')} />
               )}
             </>
           )}
         </main>
 
       </div>
+
+      {/* Global Footer Links */}
+      <Footer onNavigateTab={setActiveTab} />
 
       {/* Create / Edit Automation Modal */}
       <CreateAutomationModal

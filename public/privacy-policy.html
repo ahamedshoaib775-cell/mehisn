@@ -15,117 +15,40 @@
       --heading: #0f172a;
       --border: #e2e8f0;
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      padding: 24px 16px;
+      background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 24px 16px;
     }
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .container { max-width: 860px; margin: 0 auto; }
     .header-banner {
       background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-      color: #ffffff;
-      padding: 40px 32px;
-      border-radius: 20px;
-      margin-bottom: 32px;
+      color: #ffffff; padding: 40px 32px; border-radius: 20px; margin-bottom: 32px;
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
     }
     .badge {
-      display: inline-block;
-      background: rgba(225, 29, 72, 0.2);
-      color: #fda4af;
-      font-size: 12px;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 9999px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 16px;
-      border: 1px solid rgba(225, 29, 72, 0.3);
+      display: inline-block; background: rgba(225, 29, 72, 0.2); color: #fda4af;
+      font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 9999px;
+      text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; border: 1px solid rgba(225, 29, 72, 0.3);
     }
-    h1 {
-      font-size: 32px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .subtitle {
-      color: #cbd5e1;
-      font-size: 14px;
-    }
+    h1 { font-size: 32px; font-weight: 800; margin-bottom: 8px; }
+    .subtitle { color: #cbd5e1; font-size: 14px; }
     .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
     }
-    h2 {
-      color: var(--heading);
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    p {
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-    ul, ol {
-      padding-left: 24px;
-      margin-bottom: 12px;
-      font-size: 14px;
-    }
-    li {
-      margin-bottom: 6px;
-    }
-    .highlight-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-    .highlight-card {
-      background: #ffffff;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    .highlight-title {
-      font-weight: 700;
-      color: var(--heading);
-      margin-bottom: 6px;
-      font-size: 15px;
-    }
-    .highlight-desc {
-      font-size: 13px;
-      color: #64748b;
-    }
+    h2 { color: var(--heading); font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+    p { margin-bottom: 12px; font-size: 14px; }
+    ul, ol { padding-left: 24px; margin-bottom: 12px; font-size: 14px; }
+    li { margin-bottom: 6px; }
     .box-gray {
-      background: #f1f5f9;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 18px;
-      margin-top: 12px;
+      background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px; margin-top: 12px;
     }
     footer {
-      text-align: center;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-size: 13px;
-      color: #94a3b8;
+      text-align: center; padding-top: 24px; border-top: 1px solid var(--border); font-size: 13px; color: #94a3b8;
     }
+    .footer-links a { color: var(--text); text-decoration: none; font-weight: 600; margin: 0 8px; }
+    .footer-links a:hover { color: var(--accent); }
   </style>
 </head>
 <body>
@@ -133,80 +56,53 @@
   <div class="container">
     
     <div class="header-banner">
-      <div class="badge">Meta Compliant Policy</div>
+      <div class="badge">Meta Graph API v22.0 Compliant</div>
       <h1>Privacy Policy</h1>
-      <p class="subtitle">Effective Date: September 25, 2026 | Application: InstaDM Automation</p>
-    </div>
-
-    <div class="highlight-grid">
-      <div class="highlight-card">
-        <div class="highlight-title">🔒 No Password Storage</div>
-        <div class="highlight-desc">We connect via Meta OAuth 2.0. We never see or store your Instagram password.</div>
-      </div>
-      <div class="highlight-card">
-        <div class="highlight-title">🎯 Purpose-Driven Data</div>
-        <div class="highlight-desc">We process comment webhooks strictly to send automated replies & location links.</div>
-      </div>
-      <div class="highlight-card">
-        <div class="highlight-title">🗑️ Instant Deletion</div>
-        <div class="highlight-desc">Disconnect access anytime in Instagram settings or request complete database erasure.</div>
-      </div>
+      <p class="subtitle">Effective Date: September 25, 2026 | InstaDM Automation (AutoDM)</p>
     </div>
 
     <div class="card">
-      <h2>1. Overview & Scope</h2>
-      <p><strong>InstaDM Automation</strong> ("we", "our", or "the Service") provides Instagram comment-to-DM marketing automation tools for Instagram Business and Creator accounts. This Privacy Policy explains how we handle your data in full compliance with Meta Platform Terms and Instagram Graph API policies.</p>
+      <h2>1. Instagram API Usage</h2>
+      <p>InstaDM Automation utilizes official <strong>Instagram Graph API (v22.0)</strong> endpoints to provide comment-to-DM marketing automation for Instagram Business and Creator accounts. We adhere strictly to Meta Developer Platform Terms and API Rate Limits.</p>
     </div>
 
     <div class="card">
-      <h2>2. Information We Collect via Meta API</h2>
-      <p>When you authorize our application via Meta OAuth, we access the following scoped permissions:</p>
-      <ul>
-        <li><strong>Instagram Account Profile:</strong> User ID, username, profile image URL, account type, and follower count.</li>
-        <li><strong>Media & Posts:</strong> Media IDs, captions, permalinks, and publication timestamps for posts enabled for automation.</li>
-        <li><strong>Comment Webhook Events:</strong> Comment text, comment IDs, commenter usernames, and scoped commenter IDs to detect keywords (e.g., "LOCATION").</li>
-        <li><strong>Access Tokens:</strong> Encrypted access tokens required to perform API requests (direct messages and public replies).</li>
-      </ul>
+      <h2>2. Comments and Messages</h2>
+      <p>When users comment on your Instagram posts, our app processes incoming webhook payloads to match configured trigger keywords (e.g., "LOCATION"). In response, we dispatch automated Direct Messages with requested details and optional public comment replies.</p>
     </div>
 
     <div class="card">
-      <h2>3. How We Use Information</h2>
-      <p>Data is used exclusively to deliver the automated workflow services:</p>
-      <ul>
-        <li>Dispatching Instagram Direct Messages containing requested links or location details.</li>
-        <li>Posting optional public comment replies (e.g. "Sent to your DMs!").</li>
-        <li>Maintaining execution logs and analytics within your dashboard.</li>
-      </ul>
+      <h2>3. Account Information</h2>
+      <p>We access basic public account details: Instagram User ID, Username, Profile Picture URL, Account Type, Follower Count, and encrypted Meta OAuth Access Tokens.</p>
     </div>
 
     <div class="card">
-      <h2>4. Data Sharing & Privacy</h2>
-      <p><strong>We do NOT sell, rent, trade, or share your data with third-party advertisers.</strong></p>
-      <p>Data is transmitted securely to Meta Platform endpoints for execution and stored in encrypted Supabase database infrastructure.</p>
+      <h2>4. Data Storage &amp; Supabase</h2>
+      <p>Account configurations and execution logs are stored securely using <strong>Supabase (PostgreSQL)</strong> infrastructure with Row Level Security (RLS). All data in transit is encrypted via TLS 1.3, and tokens at rest are encrypted using AES-256.</p>
     </div>
 
     <div class="card">
-      <h2>5. User Rights & Data Deletion Instructions</h2>
-      <p>You can revoke access or delete your data at any time:</p>
-      <div class="box-gray">
-        <p><strong>Option A: Revoke via Instagram App</strong></p>
-        <ol>
-          <li>Open Instagram &gt; Settings &amp; Privacy &gt; Website Permissions &gt; Apps and Websites.</li>
-          <li>Locate <strong>InstaDM Automation</strong> and click <strong>Remove</strong>.</li>
-        </ol>
-        <p style="margin-top:12px;"><strong>Option B: Request Database Erasure</strong></p>
-        <p>Email <a href="mailto:privacy@instadm.app" style="color:#e11d48;">privacy@instadm.app</a> with your Instagram username. All stored records, logs, and tokens will be permanently deleted within 48 hours.</p>
-      </div>
+      <h2>5. Data Retention</h2>
+      <p>Webhook activity logs are stored for up to 30 days for analytics before automatic purge. Access tokens are deleted immediately upon account disconnection.</p>
     </div>
 
     <div class="card">
-      <h2>6. Security & Contact</h2>
-      <p>We enforce TLS 1.3 encryption for data in transit and AES-256 for data at rest.</p>
-      <p>For questions or support, contact: <strong>privacy@instadm.app</strong></p>
+      <h2>6. User Deletion Requests</h2>
+      <p>Users can disconnect app access via Instagram settings (<em>Settings &amp; Privacy &gt; Website Permissions &gt; Apps and Websites</em>) or submit a deletion request to <a href="mailto:privacy@instadm.app" style="color:var(--accent);">privacy@instadm.app</a> to request complete database erasure within 48 hours.</p>
+    </div>
+
+    <div class="card">
+      <h2>7. Contact Information</h2>
+      <p>For questions or support, contact: <strong>privacy@instadm.app</strong> / <strong>support@instadm.app</strong></p>
     </div>
 
     <footer>
-      &copy; 2026 InstaDM Automation. All rights reserved. | Meta Graph API v22.0 Compliant
+      <div class="footer-links" style="margin-bottom:12px;">
+        <a href="/privacy-policy.html">Privacy Policy</a> |
+        <a href="/data-deletion.html">Data Deletion</a> |
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+      &copy; 2026 InstaDM Automation. All rights reserved.
     </footer>
 
   </div>
