@@ -6,7 +6,8 @@ import {
   Film, 
   Activity, 
   Sliders, 
-  ShieldCheck
+  ShieldCheck,
+  Trash2
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -55,6 +56,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       id: 'privacy' as ActiveTab,
       label: 'Privacy Policy',
       icon: ShieldCheck,
+      badge: null,
+    },
+    {
+      id: 'data-deletion' as ActiveTab,
+      label: 'Data Deletion',
+      icon: Trash2,
       badge: null,
     },
   ];

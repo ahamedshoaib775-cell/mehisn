@@ -88,4 +88,4 @@ export interface LiveTestConnectionResult {
   tested_at: string;
 }
 
-export type ActiveTab = 'dashboard' | 'automations' | 'posts' | 'activity' | 'setup' | 'privacy';
+export type ActiveTab = 'dashboard' | 'automations' | 'posts' | 'activity' | 'setup' | 'privacy' | 'data-deletion';
