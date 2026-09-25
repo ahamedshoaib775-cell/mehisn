@@ -19,6 +19,7 @@ import { CreateAutomationModal } from './components/automations/CreateAutomation
 import { PostsGrid } from './components/posts/PostsGrid';
 import { ActivityLog } from './components/activity/ActivityLog';
 import { DeveloperSetupGuide } from './components/setup/DeveloperSetupGuide';
+import { PrivacyPolicy } from './components/legal/PrivacyPolicy';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<ActiveTab>('dashboard');
@@ -214,6 +215,10 @@ export function App() {
               {activeTab === 'activity' && <ActivityLog events={events} />}
 
               {activeTab === 'setup' && <DeveloperSetupGuide />}
+
+              {activeTab === 'privacy' && (
+                <PrivacyPolicy onBackToApp={() => setActiveTab('dashboard')} />
+              )}
             </>
           )}
         </main>

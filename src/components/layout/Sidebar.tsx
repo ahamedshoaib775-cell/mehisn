@@ -51,6 +51,12 @@ export const Sidebar: React.FC<SidebarProps> = ({
       icon: Sliders,
       badge: null,
     },
+    {
+      id: 'privacy' as ActiveTab,
+      label: 'Privacy Policy',
+      icon: ShieldCheck,
+      badge: null,
+    },
   ];
 
   return (
